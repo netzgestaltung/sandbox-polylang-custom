@@ -33,7 +33,7 @@ add_action('plugins_loaded', 'sandbox_polylang_custom');
 
 function sandbox_polylang_custom(){
   // filter lang-item names to shortnames
-  add_filter( 'pll_the_languages_args', 'sandbox_lang_names');
+  add_filter('pll_the_languages_args', 'sandbox_lang_names');
 }
 
 
