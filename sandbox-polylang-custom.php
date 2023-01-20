@@ -1,3 +1,4 @@
+<?php
 /**
  * Plugin Name: Sandbox Polylang custom extensions
  * Version: 1.0.0
