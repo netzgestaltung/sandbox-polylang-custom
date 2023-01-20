@@ -22,7 +22,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 /**
  * Plugin setup hook
  * 
@@ -32,10 +31,70 @@
 add_action('plugins_loaded', 'sandbox_polylang_custom');
 
 function sandbox_polylang_custom(){
+  
+  // translate polylang strings
+  add_action('admin_init', 'sandbox_string_translations');
+  
   // filter lang-item names to shortnames
   add_filter('pll_the_languages_args', 'sandbox_lang_names');
 }
 
+/**
+ * Add string translations to polylang settings
+ * 
+ * Helps you translating anything
+ * 
+ * @since 1.0.0
+ * @added 2023-01-20 Thomas Fellinger
+ * @todo  custom options page to add strings, currently edit here.
+ */
+function sandbox_string_translations(){
+  $strings = array(
+    'Ergebnisse anzeigen',
+    'auf Twitter',
+    'Please contact us for additional information',
+    'contact-form-id',
+    'Schließen',
+    'Aktuelles',
+    'Wir arbeiten zusammen bei',
+    'Ausgangssituation / Problemlage',
+    'Lösungsansatz',
+    'Ergebnis',
+    'Ansprechpartnerin Bewerbungen',
+    'E-Mail senden',
+    'Lesen Sie mehr',
+    'Ihr Ansprechpartner für',
+    'Thema',
+    'Sprache',
+    'Datum',
+    'Datum/Uhrzeit',
+    'Unsere nächsten',
+    'finden wie folgt statt:',
+    'Uhr',
+    'Momentan sind keine',
+    'geplant.',
+    'services',
+    'Read more',
+    'Share',
+    'Search',
+    'Search for',
+    'Download',
+    'Deutsch',
+    'Englisch',
+    'Scroll down',
+    'Alle anzeigen',
+    'Weniger anzeigen',
+    'Tel',
+    'Fax',
+    'E-Mail',
+    'Webadresse',
+  );
+  if ( function_exists('pll_register_string') ) {
+    foreach ( $strings as $string ) {
+      pll_register_string('sandbox', $string, 'field-labels');
+    }
+  }
+}
 
 /**
  * filter lang-item names to shortnames
@@ -51,4 +110,3 @@ function sandbox_lang_names($args) {
   }
   return $args;
 }
-
